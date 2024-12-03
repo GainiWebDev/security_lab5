@@ -2,14 +2,21 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Login</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 <h1>Login</h1>
 <form action="/login" th:action="@{/login}" method="post">
     <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
-    <label>Username:</label><input type="text" name="username" /><br />
-    <label>Password:</label><input type="password" name="password" /><br />
+
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required/>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required/>
+
     <button type="submit">Login</button>
 </form>
+<a href="/register">Register Here</a>
 </body>
 </html>

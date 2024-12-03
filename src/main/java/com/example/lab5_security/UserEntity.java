@@ -2,17 +2,22 @@ package com.example.lab5_security;
 
 import jakarta.persistence.*;
 
+import jakarta.persistence.*;
+import java.util.List;
+
 @Entity
-@Table(name = "users")
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String username;
+
     private String password;
 
-    // Геттеры и сеттеры
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Task> tasks;
+
     public Long getId() {
         return id;
     }
@@ -36,5 +41,12 @@ public class UserEntity {
     public void setPassword(String password) {
         this.password = password;
     }
-}
 
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+}
